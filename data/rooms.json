@@ -1,0 +1,5 @@
+[
+    { "number": "101", "status": "available", "guest": null, "needsCleaning": false },
+    { "number": "102", "status": "available", "guest": null, "needsCleaning": false },
+    { "number": "103", "status": "occupied", "guest": "John Doe", "needsCleaning": true }
+]
