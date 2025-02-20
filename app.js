@@ -1,4 +1,3 @@
-// app.js - Main entry point
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
@@ -34,14 +33,22 @@ authRouter.get('/login', (req, res) => {
 });
 
 authRouter.post('/login', (req, res) => {
-    const { username, password } = req.body;
-    const user = users.find(u => u.username === username && u.password === password);
+    const { username, password, role } = req.body;
+    // Find a user matching the provided credentials and selected role
+    const user = users.find(u => u.username === username && u.password === password && u.role === role);
     if (user) {
         req.session.user = user;
-        return res.redirect('/');
+        // Redirect to the appropriate dashboard based on role
+        if (user.role === 'receptionist') {
+            return res.redirect('/receptionist');
+        } else if (user.role === 'housekeeping') {
+            return res.redirect('/housekeeping');
+        }
     }
+    // If credentials are invalid, re-render the login view with an error message
     res.render('login', { error: 'Invalid credentials' });
 });
+
 
 authRouter.get('/logout', (req, res) => {
     req.session.destroy(() => {
