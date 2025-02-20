@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Management System</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Welcome to the Hotel Management System</h1>
+    <% if (user) { %>
+      <p>Logged in as <strong><%= user.username %></strong> (<%= user.role %>)</p>
+      <a href="/auth/logout">Logout</a>
+    <% } else { %>
+      <a href="/auth/login">Login</a>
+    <% } %>
+  </header>
+  <main>
+    <p>Please choose your dashboard:</p>
+    <ul>
+      <% if (user && user.role === 'receptionist') { %>
+        <li><a href="/receptionist">Receptionist Dashboard</a></li>
+      <% } %>
+      <% if (user && user.role === 'housekeeping') { %>
+        <li><a href="/housekeeping">Housekeeping Dashboard</a></li>
+      <% } %>
+    </ul>
+  </main>
+</body>
+</html>
