@@ -2,6 +2,7 @@
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
+const fs = require('fs');
 const receptionistRoutes = require('./routes/receptionist');
 const housekeepingRoutes = require('./routes/housekeeping');
 const authRoutes = require('./routes/auth');
@@ -19,6 +20,7 @@ app.use(session({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 // Authentication Middleware
 const authenticateUser = (roles) => {
@@ -39,7 +41,7 @@ const users = [
 const authRoutes = express.Router();
 
 authRoutes.get('/login', (req, res) => {
-    res.render('login');
+    res.render('login', { error: null });
 });
 
 authRoutes.post('/login', (req, res) => {
@@ -49,7 +51,7 @@ authRoutes.post('/login', (req, res) => {
         req.session.user = user;
         return res.redirect('/');
     }
-    res.status(401).send('Invalid credentials');
+    res.render('login', { error: 'Invalid credentials' });
 });
 
 authRoutes.get('/logout', (req, res) => {
