@@ -22,16 +22,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Authentication Middleware
-const authenticateUser = (roles) => {
-    return (req, res, next) => {
-        if (!req.session.user || !roles.includes(req.session.user.role)) {
-            return res.status(403).send('Access Denied');
-        }
-        next();
-    };
-};
-
 // Authentication Routes
 const users = [
     { username: 'receptionist', password: '1234', role: 'receptionist' },
