@@ -5,7 +5,6 @@ const path = require('path');
 const fs = require('fs');
 const receptionistRoutes = require('./routes/receptionist');
 const housekeepingRoutes = require('./routes/housekeeping');
-const authRoutes = require('./routes/auth');
 const { authenticateUser } = require('./middleware/auth');
 
 const app = express();
@@ -28,13 +27,13 @@ const users = [
     { username: 'housekeeping', password: '1234', role: 'housekeeping' }
 ];
 
-const authRoutes = express.Router();
+const authRouter = express.Router();
 
-authRoutes.get('/login', (req, res) => {
+authRouter.get('/login', (req, res) => {
     res.render('login', { error: null });
 });
 
-authRoutes.post('/login', (req, res) => {
+authRouter.post('/login', (req, res) => {
     const { username, password } = req.body;
     const user = users.find(u => u.username === username && u.password === password);
     if (user) {
@@ -44,13 +43,13 @@ authRoutes.post('/login', (req, res) => {
     res.render('login', { error: 'Invalid credentials' });
 });
 
-authRoutes.get('/logout', (req, res) => {
+authRouter.get('/logout', (req, res) => {
     req.session.destroy(() => {
         res.redirect('/');
     });
 });
 
-app.use('/auth', authRoutes);
+app.use('/auth', authRouter);
 
 // Routes
 app.use('/receptionist', authenticateUser(['receptionist']), receptionistRoutes);
