@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Housekeeping Dashboard</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <img src="/images/logo.png" alt="Hotel Logo" class="logo">
+    <h1>Housekeeping Dashboard</h1>
+    <p>Welcome, <%= user.username %>!</p>
+    <a href="/auth/logout">Logout</a>
+  </header>
+  <div class="container">
+    <h2>Pending Cleaning Tasks</h2>
+    <% if (cleaningTasks && cleaningTasks.length) { %>
+      <form action="/housekeeping/update-room" method="POST">
+        <label for="roomNumber">Select Room to Mark as Clean:</label>
+        <select name="roomNumber" required>
+          <% cleaningTasks.forEach(task => { %>
+            <option value="<%= task.number %>">Room <%= task.number %> (Occupied)</option>
+          <% }); %>
+        </select>
+        <button type="submit">Mark as Clean</button>
+      </form>
+    <% } else { %>
+      <p>No cleaning tasks available.</p>
+    <% } %>
+  </div>
+</body>
+</html>
