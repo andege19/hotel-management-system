@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Receptionist Dashboard</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <img src="/images/logo.png" alt="Hotel Logo" class="logo">
+    <h1>Receptionist Dashboard</h1>
+    <p>Welcome, <%= user.username %>!</p>
+    <a href="/auth/logout">Logout</a>
+  </header>
+  <div class="container">
+    <h2>Room List</h2>
+    <% if (rooms && rooms.length) { %>
+      <!-- Displaying room list as a dropdown for quick overview -->
+      <select name="roomInfo" id="roomInfo" onchange="alert('Room ' + this.value + ' info')">
+        <% rooms.forEach(room => { %>
+          <option value="<%= room.number %>">
+            Room <%= room.number %> - 
+            <% if(room.status === 'occupied') { %>
+              <span class="room-occupied">Occupied (<%= room.guest %>)</span>
+            <% } else { %>
+              Available
+            <% } %>
+          </option>
+        <% }); %>
+      </select>
+    <% } else { %>
+      <p>No rooms available.</p>
+    <% } %>
+
+    <h2>Book a Room</h2>
+    <form action="/receptionist/check-in" method="POST">
+      <label for="guestName">Guest Name:</label>
+      <input type="text" name="guestName" required>
+      
+      <label for="roomNumber">Select Room:</label>
+      <select name="roomNumber" required>
+        <% rooms.forEach(room => { %>
+          <% if(room.status === 'available') { %>
+            <option value="<%= room.number %>">Room <%= room.number %></option>
+          <% } %>
+        <% }); %>
+      </select>
+      
+      <button type="submit">Check In Guest</button>
+    </form>
+
+    <h2>Check Out Guest</h2>
+    <form action="/receptionist/check-out" method="POST">
+      <label for="checkoutRoom">Select Room to Check Out:</label>
+      <select name="roomNumber" required>
+        <% rooms.forEach(room => { %>
+          <% if(room.status === 'occupied') { %>
+            <option value="<%= room.number %>">Room <%= room.number %> (Guest: <%= room.guest %>)</option>
+          <% } %>
+        <% }); %>
+      </select>
+      <button type="submit">Check Out</button>
+    </form>
+    
+    <h2>Add Cleaning Request</h2>
+    <form action="/receptionist/add-cleaning" method="POST">
+      <label for="cleanRoom">Select Occupied Room:</label>
+      <select name="roomNumber" required>
+        <% rooms.forEach(room => { %>
+          <% if(room.status === 'occupied' && !room.needsCleaning) { %>
+            <option value="<%= room.number %>">Room <%= room.number %></option>
+          <% } %>
+        <% }); %>
+      </select>
+      <button type="submit">Add Cleaning Request</button>
+    </form>
+  </div>
+</body>
+</html>
