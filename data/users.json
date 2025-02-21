@@ -1,0 +1,17 @@
+[
+  {
+    "username": "receptionist",
+    "password": "1234",
+    "role": "receptionist"
+  },
+  {
+    "username": "housekeeping",
+    "password": "1234",
+    "role": "housekeeping"
+  },
+  {
+    "username": "janitor",
+    "password": "1234",
+    "role": "receptionist"
+  }
+]
