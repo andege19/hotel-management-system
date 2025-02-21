@@ -1,4 +1,3 @@
-// app.js - Main entry point
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
@@ -20,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Mount Authentication Routes
+// Authentication Routes
 const authRouter = require('./routes/auth');
 app.use('/auth', authRouter);
 
