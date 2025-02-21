@@ -55,19 +55,19 @@ authRouter.post('/login', (req, res) => {
   res.render('login', { error: 'Invalid credentials' });
 });
 
-// GET /logout
+// logout
 authRouter.get('/logout', (req, res) => {
   req.session.destroy(() => {
     res.redirect('/');
   });
 });
 
-// GET /signup
+// signup
 authRouter.get('/signup', (req, res) => {
   res.render('signup', { error: null });
 });
 
-// POST /signup
+// signup
 authRouter.post('/signup', (req, res) => {
   const { username, password, role } = req.body;
   let users = loadUsers();
