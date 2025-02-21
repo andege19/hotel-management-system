@@ -1,13 +1,62 @@
 [
-    { "number": "101", "status": "available", "guest": null, "needsCleaning": false },
-    { "number": "102", "status": "available", "guest": null, "needsCleaning": false },
-    { "number": "103", "status": "available", "guest": null, "needsCleaning": false },
-    { "number": "104", "status": "available", "guest": null, "needsCleaning": false },
-    { "number": "105", "status": "available", "guest": null, "needsCleaning": false },
-    { "number": "106", "status": "available", "guest": null, "needsCleaning": false },
-    { "number": "107", "status": "available", "guest": null, "needsCleaning": false },
-    { "number": "108", "status": "available", "guest": null, "needsCleaning": false },
-    { "number": "109", "status": "available", "guest": null, "needsCleaning": false },
-    { "number": "110", "status": "available", "guest": null, "needsCleaning": false }
-  ]
-  
+  {
+    "number": "101",
+    "status": "available",
+    "guest": "Alice Ndege",
+    "needsCleaning": false
+  },
+  {
+    "number": "102",
+    "status": "available",
+    "guest": null,
+    "needsCleaning": false
+  },
+  {
+    "number": "103",
+    "status": "available",
+    "guest": null,
+    "needsCleaning": false
+  },
+  {
+    "number": "104",
+    "status": "available",
+    "guest": null,
+    "needsCleaning": false
+  },
+  {
+    "number": "105",
+    "status": "available",
+    "guest": null,
+    "needsCleaning": false
+  },
+  {
+    "number": "106",
+    "status": "available",
+    "guest": null,
+    "needsCleaning": false
+  },
+  {
+    "number": "107",
+    "status": "available",
+    "guest": null,
+    "needsCleaning": false
+  },
+  {
+    "number": "108",
+    "status": "available",
+    "guest": null,
+    "needsCleaning": false
+  },
+  {
+    "number": "109",
+    "status": "available",
+    "guest": null,
+    "needsCleaning": false
+  },
+  {
+    "number": "110",
+    "status": "available",
+    "guest": null,
+    "needsCleaning": false
+  }
+]
