@@ -1,70 +1,36 @@
+// app.js - Main entry point
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
-const fs = require('fs');
 const receptionistRoutes = require('./routes/receptionist');
 const housekeepingRoutes = require('./routes/housekeeping');
 const { authenticateUser } = require('./middleware/auth');
 
 const app = express();
 
-// Middleware
+// Middleware Setup
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(session({
-    secret: 'hotel_secret_key',
-    resave: false,
-    saveUninitialized: true,
+  secret: 'hotel_secret_key',
+  resave: false,
+  saveUninitialized: true,
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Authentication Routes
-const users = [
-    { username: 'receptionist', password: '1234', role: 'receptionist' },
-    { username: 'housekeeping', password: '1234', role: 'housekeeping' }
-];
-
-const authRouter = express.Router();
-
-authRouter.get('/login', (req, res) => {
-    res.render('login', { error: null });
-});
-
-authRouter.post('/login', (req, res) => {
-    const { username, password, role } = req.body;
-    // Find a user matching the provided credentials and selected role
-    const user = users.find(u => u.username === username && u.password === password && u.role === role);
-    if (user) {
-        req.session.user = user;
-        // Redirect to the appropriate dashboard based on role
-        if (user.role === 'receptionist') {
-            return res.redirect('/receptionist');
-        } else if (user.role === 'housekeeping') {
-            return res.redirect('/housekeeping');
-        }
-    }
-    // If credentials are invalid, re-render the login view with an error message
-    res.render('login', { error: 'Invalid credentials' });
-});
-
-
-authRouter.get('/logout', (req, res) => {
-    req.session.destroy(() => {
-        res.redirect('/');
-    });
-});
-
+// Mount Authentication Routes
+const authRouter = require('./routes/auth');
 app.use('/auth', authRouter);
 
-// Routes
+// Protected Routes for Receptionist and Housekeeping
 app.use('/receptionist', authenticateUser(['receptionist']), receptionistRoutes);
 app.use('/housekeeping', authenticateUser(['housekeeping']), housekeepingRoutes);
 
 // Home Route
 app.get('/', (req, res) => {
-    res.render('index', { user: req.session.user || null });
+  res.render('index', { user: req.session.user || null });
 });
 
 const PORT = process.env.PORT || 3000;
