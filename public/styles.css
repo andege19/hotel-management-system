@@ -1,116 +1,156 @@
-/* Global Reset */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
   }
   
-  /* Body styling */
   body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #74ebd5, #acb6e5);
-    color: #333;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #84b4dc, #faf39b);
+    color: #1d4567;
     line-height: 1.6;
     padding: 20px;
+    overflow-x: hidden;
+    position: relative;
   }
   
-  /* Login page specific styles */
-  body.login-page {
-    background: #f4f7f8;
-    overflow: hidden;
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 20px;
   }
   
-  /* Animated shapes for login background */
-  @keyframes move {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(20px); }
-    100% { transform: translateY(0px); }
-  }
-  .moving-shape {
-    position: absolute;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    animation: move 3s ease-in-out infinite;
-  }
-  .shape1 {
-    width: 80px;
-    height: 80px;
-    top: 10%;
-    left: 20%;
-  }
-  .shape2 {
-    width: 100px;
-    height: 100px;
-    top: 50%;
-    left: 70%;
-  }
   
-  /* Header styling for dashboards */
   header {
-    background: #ff6f61;
-    color: #fff;
+    background: #1d4567;
+    color: #faf39b;
     padding: 20px;
     text-align: center;
+    border-radius: 8px;
     margin-bottom: 20px;
     position: relative;
   }
   header h1 {
     margin-bottom: 10px;
+    font-size: 2rem;
   }
   header a {
-    color: #fff;
+    color: #faf39b;
     text-decoration: none;
     font-weight: bold;
+    font-size: 1rem;
   }
+  
+ 
   .logo {
     width: 100px;
-    height: auto;
     margin-bottom: 10px;
   }
   
-  /* Container for content */
-  .container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+ 
+  body.login-page {
+    background: linear-gradient(135deg, #84b4dc, #faf39b);
+    position: relative;
   }
   
-  /* Headings */
-  h2 {
-    margin-bottom: 15px;
-    color: #ff6f61;
+  .login-container {
+    position: relative;
+    max-width: 450px;
+    margin: 80px auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    text-align: center;
   }
   
-  /* List/dropdown styles */
-  ul {
-    list-style-type: none;
+  .login-logo {
+    display: block;
+    margin: 0 auto 20px;
+    width: 120px;
+  }
+  
+  .login-container h2 {
     margin-bottom: 20px;
-  }
-  ul li {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-  }
-  ul li:last-child {
-    border-bottom: none;
-  }
-  /* Occupied room flag */
-  .room-occupied {
-    color: red;
-    font-weight: bold;
+    color: #1d4567;
   }
   
-  /* Form Styles */
+  .error {
+    color: #d9534f;
+    margin-bottom: 15px;
+  }
+
+ 
+  a.button-link {
+    display: inline-block;
+    background-color: #9b8961;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  a.button-link:hover {
+    background-color: #655035;
+  }
+  
+  .moving-shape {
+    position: absolute;
+    background: rgba(156, 164, 204, 0.3);
+    border-radius: 50%;
+    animation: move 4s ease-in-out infinite;
+    z-index: 1;
+  }
+  .shape1 {
+    width: 80px;
+    height: 80px;
+    top: 10%;
+    left: 5%;
+  }
+  .shape2 {
+    width: 120px;
+    height: 120px;
+    top: 70%;
+    left: 80%;
+  }
+  @keyframes move {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(20px, 20px); }
+    100% { transform: translate(0, 0); }
+  }
+  
+  /* Form Styling */
   form {
+    text-align: left;
     margin-top: 20px;
   }
+  
+  form fieldset {
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  form legend {
+    padding: 0 5px;
+    font-weight: bold;
+    color: #1d4567;
+  }
+  
   form label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    color: #1d4567;
   }
+  
   form input[type="text"],
   form input[type="password"],
   form select {
@@ -119,38 +159,67 @@
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
-  }
-  form button {
-    background: #ff6f61;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  form button:hover {
-    background: #ff4a3d;
+    transition: border-color 0.3s ease;
   }
   
-  /* Login Container Specific */
-  .login-container {
-    position: relative;
-    max-width: 450px;
-    margin: 50px auto;
-    padding: 40px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 1;
+  form input[type="text"]:focus,
+  form input[type="password"]:focus,
+  form select:focus {
+    border-color: #84b4dc;
+    outline: none;
   }
-  .login-logo {
-    display: block;
-    margin: 0 auto 20px;
-    width: 120px;
+  
+  form button {
+    background: #9b8961;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-size: 1rem;
   }
-  .error {
-    color: red;
-    margin-bottom: 15px;
-    text-align: center;
+  
+  form button:hover {
+    background: #655035;
+  }
+  
+  /* Dropdown List for Rooms in Dashboards */
+  select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #ffffff;
+  }
+  
+  /* List Styles for Room Lists */
+  ul {
+    list-style: none;
+    margin-bottom: 20px;
+  }
+  
+  ul li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  ul li:last-child {
+    border-bottom: none;
+  }
+  
+  /* Flag for Occupied Rooms */
+  .room-occupied {
+    color: #d9534f;
+    font-weight: bold;
+  }
+  
+  @media (max-width: 600px) {
+    .container, .login-container {
+      margin: 20px;
+      padding: 20px;
+    }
+    header h1 {
+      font-size: 1.5rem;
+    }
   }
   
