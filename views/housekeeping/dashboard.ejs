@@ -8,11 +8,13 @@
 </head>
 <body>
   <header>
-    <img src="/images/logo.png" alt="Hotel Logo" class="logo">
-    <h1>Housekeeping Dashboard</h1>
-    <p>Welcome, <%= user.username %>!</p>
-    <a href="/auth/logout">Logout</a>
-  </header>
+    <header>
+        <img src="/images/logo.png" alt="Hotel Logo" class="logo">
+        <h1>Housekeeping Dashboard</h1>
+        <p>Welcome, <%= user.username %>!</p>
+        <a href="/auth/logout" class="button-link">Logout</a>
+      </header>
+      
   <div class="container">
     <h2>Pending Cleaning Tasks</h2>
     <% if (cleaningTasks && cleaningTasks.length) { %>
