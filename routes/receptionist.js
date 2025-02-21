@@ -51,15 +51,20 @@ router.post('/check-out', (req, res) => {
 
 // Add Cleaning Request
 router.post('/add-cleaning', (req, res) => {
-  const { roomNumber } = req.body;
-  let rooms = loadRooms();
-  const room = rooms.find(r => r.number === roomNumber);
-  if (room && room.status === 'occupied' && !room.needsCleaning) {
-    room.needsCleaning = true;
-    saveRooms(rooms);
-    return res.redirect('/receptionist');
-  }
-  res.status(400).send('Invalid request.');
-});
+    const { roomNumber } = req.body;
+    let rooms = loadRooms();
+    const room = rooms.find(r => r.number === roomNumber);
+    if (room) {
+      if (!room.needsCleaning) {
+        room.needsCleaning = true;
+        saveRooms(rooms);
+        return res.redirect('/receptionist');
+      } else {
+        return res.status(400).send('Cleaning request already added for this room.');
+      }
+    }
+    res.status(400).send('Invalid room selection.');
+  });
+  
 
 module.exports = router;
