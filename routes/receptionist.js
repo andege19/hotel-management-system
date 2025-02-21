@@ -34,7 +34,7 @@ router.post('/check-in', (req, res) => {
   res.status(400).send('Room is not available.');
 });
 
-// Check-out Guest (new feature)
+// Check-out Guest 
 router.post('/check-out', (req, res) => {
   const { roomNumber } = req.body;
   let rooms = loadRooms();
