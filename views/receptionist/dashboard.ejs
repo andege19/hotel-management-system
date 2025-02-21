@@ -7,16 +7,16 @@
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <header>
-    <img src="/images/logo.png" alt="Hotel Logo" class="logo">
-    <h1>Receptionist Dashboard</h1>
-    <p>Welcome, <%= user.username %>!</p>
-    <a href="/auth/logout">Logout</a>
-  </header>
+    <header>
+        <img src="/images/logo.png" alt="Hotel Logo" class="logo">
+        <h1>Receptionist Dashboard</h1>
+        <p>Welcome, <%= user.username %>!</p>
+        <a href="/auth/logout" class="button-link">Logout</a>
+      </header>      
   <div class="container">
     <h2>Room List</h2>
     <% if (rooms && rooms.length) { %>
-      <!-- Displaying room list as a dropdown for quick overview -->
+      <!-- Display room list as a dropdown -->
       <select name="roomInfo" id="roomInfo" onchange="alert('Room ' + this.value + ' info')">
         <% rooms.forEach(room => { %>
           <option value="<%= room.number %>">
@@ -65,12 +65,13 @@
     
     <h2>Add Cleaning Request</h2>
     <form action="/receptionist/add-cleaning" method="POST">
-      <label for="cleanRoom">Select Occupied Room:</label>
+      <label for="cleanRoom">Select Room for Cleaning Request:</label>
       <select name="roomNumber" required>
         <% rooms.forEach(room => { %>
-          <% if(room.status === 'occupied' && !room.needsCleaning) { %>
-            <option value="<%= room.number %>">Room <%= room.number %></option>
-          <% } %>
+          <option value="<%= room.number %>">
+            Room <%= room.number %> - <%= room.status %>
+            <% if (room.needsCleaning) { %> (Already Requested)<% } %>
+          </option>
         <% }); %>
       </select>
       <button type="submit">Add Cleaning Request</button>
