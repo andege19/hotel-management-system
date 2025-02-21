@@ -6,30 +6,19 @@
   <title>Login - Hotel Management System</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
-<body class="login-page">
-  <!-- Animated background shapes -->
-  <div class="moving-shape shape1"></div>
-  <div class="moving-shape shape2"></div>
+<body>
 
   <div class="login-container">
-    <!-- Logo -->
-    <img src="/images/logo.png" alt="Hotel Logo" class="login-logo">
     <h2>Login</h2>
     <% if (error) { %>
       <p class="error"><%= error %></p>
     <% } %>
     <form action="/auth/login" method="POST">
-      <fieldset>
-        <legend>Select Your Role</legend>
-        <div>
-          <input type="radio" id="roleReceptionist" name="role" value="receptionist" required>
-          <label for="roleReceptionist">Receptionist</label>
-        </div>
-        <div>
-          <input type="radio" id="roleHousekeeping" name="role" value="housekeeping" required>
-          <label for="roleHousekeeping">Housekeeping Staff</label>
-        </div>
-      </fieldset>
+      <label for="role">I am a:</label>
+      <select name="role" id="role" required>
+        <option value="receptionist">Receptionist</option>
+        <option value="housekeeping">Housekeeping Staff</option>
+      </select>
       
       <label for="username">Work ID:</label>
       <input type="text" id="username" name="username" required>
@@ -39,6 +28,7 @@
       
       <button type="submit">Login</button>
     </form>
+    <p>Don't have an account? <a href="/auth/signup" class="button-link">Sign Up</a></p>
   </div>
 </body>
 </html>
