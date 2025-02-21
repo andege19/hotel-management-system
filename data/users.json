@@ -1,17 +1,27 @@
 [
   {
-    "username": "receptionist",
+    "username": "mandy_mane",
     "password": "1234",
     "role": "receptionist"
   },
   {
-    "username": "housekeeping",
+    "username": "jael_akol",
     "password": "1234",
     "role": "housekeeping"
   },
   {
-    "username": "janitor",
+    "username": "ahmed_farah",
     "password": "1234",
     "role": "receptionist"
+  },
+  {
+    "username": "dael_osman",
+    "password": "5678",
+    "role": "housekeeping"
+  },
+  {
+    "username": "charlie_jarra",
+    "password": "2000",
+    "role": "housekeeping"
   }
 ]

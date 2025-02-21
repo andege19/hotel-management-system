@@ -24,13 +24,5 @@ Hotel Management System is a multi-page Node.js application designed to streamli
   - EJS (Templating Engine)
   - CSS for styling
 
-Login Credentials:
-
-Receptionist:
-Username: receptionist
-Password: 1234
-Housekeeping:
-Username: housekeeping
-Password: 1234
 
 
