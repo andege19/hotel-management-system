@@ -1,8 +1,8 @@
 [
   {
     "number": "101",
-    "status": "available",
-    "guest": "Alice Ndege",
+    "status": "occupied",
+    "guest": "Muinde Brian",
     "needsCleaning": false
   },
   {
@@ -49,8 +49,8 @@
   },
   {
     "number": "109",
-    "status": "available",
-    "guest": null,
+    "status": "occupied",
+    "guest": "Bridgit Mendler ",
     "needsCleaning": false
   },
   {
