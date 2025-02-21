@@ -8,24 +8,18 @@
 </head>
 <body>
   <header>
-    <h1>Welcome to the Hotel Management System</h1>
+    <img src="/images/logo.png" alt="Hotel Logo" class="logo">
+    <h1>Hotel Management System</h1>
     <% if (user) { %>
-      <p>Logged in as <strong><%= user.username %></strong> (<%= user.role %>)</p>
-      <a href="/auth/logout">Logout</a>
+      <p>Welcome, <%= user.username %>!</p>
+      <a href="/auth/logout" class="button-link">Logout</a>
     <% } else { %>
-      <a href="/auth/login">Login</a>
+      <a href="/auth/login" class="button-link">Login</a>
     <% } %>
   </header>
-  <main>
-    <p>Please choose your dashboard:</p>
-    <ul>
-      <% if (user && user.role === 'receptionist') { %>
-        <li><a href="/receptionist">Receptionist Dashboard</a></li>
-      <% } %>
-      <% if (user && user.role === 'housekeeping') { %>
-        <li><a href="/housekeeping">Housekeeping Dashboard</a></li>
-      <% } %>
-    </ul>
-  </main>
+  <div class="container">
+    <h2>Home</h2>
+    <p>This is the hotel management system. Use the navigation above to log in to access your dashboard.</p>
+  </div>
 </body>
 </html>
